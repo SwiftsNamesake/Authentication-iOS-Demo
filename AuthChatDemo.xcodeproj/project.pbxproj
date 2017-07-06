@@ -7,15 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F7EBFD616BE12DADB6703AE /* Pods_AuthChatDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E9CAD4B170BFE25E628D13 /* Pods_AuthChatDemo.framework */; };
+		E04152B91F0D956700A2F696 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04152B81F0D956700A2F696 /* CoreDataStack.swift */; };
 		E055D86F1F0CABF0009420FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E055D86E1F0CABF0009420FB /* AppDelegate.swift */; };
 		E055D8711F0CABF0009420FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E055D8701F0CABF0009420FB /* ViewController.swift */; };
 		E055D8741F0CABF0009420FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E055D8721F0CABF0009420FB /* Main.storyboard */; };
 		E055D8771F0CABF0009420FB /* AuthChatDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E055D8751F0CABF0009420FB /* AuthChatDemo.xcdatamodeld */; };
 		E055D8791F0CABF0009420FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E055D8781F0CABF0009420FB /* Assets.xcassets */; };
 		E055D87C1F0CABF0009420FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E055D87A1F0CABF0009420FB /* LaunchScreen.storyboard */; };
+		E0F648561F0CB05900F6CD61 /* PerfectLocalAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F648551F0CB05900F6CD61 /* PerfectLocalAuth.swift */; };
+		E0F648581F0CB53600F6CD61 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F648571F0CB53500F6CD61 /* Alamofire.framework */; };
+		E0F6485A1F0D65A900F6CD61 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F648591F0D65A900F6CD61 /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D69B5C38694428B66FE8471 /* Pods-AuthChatDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AuthChatDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AuthChatDemo/Pods-AuthChatDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		C2E9CAD4B170BFE25E628D13 /* Pods_AuthChatDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AuthChatDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5151ECB2E6AAD331B117627 /* Pods-AuthChatDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AuthChatDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AuthChatDemo/Pods-AuthChatDemo.release.xcconfig"; sourceTree = "<group>"; };
+		E04152B81F0D956700A2F696 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		E055D86B1F0CABF0009420FB /* AuthChatDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuthChatDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E055D86E1F0CABF0009420FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E055D8701F0CABF0009420FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +33,9 @@
 		E055D8781F0CABF0009420FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E055D87B1F0CABF0009420FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E055D87D1F0CABF0009420FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0F648551F0CB05900F6CD61 /* PerfectLocalAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectLocalAuth.swift; sourceTree = "<group>"; };
+		E0F648571F0CB53500F6CD61 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AuthChatDemo-brkoqrcxxmgdbvbevbrlfmdlvfbb/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		E0F648591F0D65A900F6CD61 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +43,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F7EBFD616BE12DADB6703AE /* Pods_AuthChatDemo.framework in Frameworks */,
+				E0F648581F0CB53600F6CD61 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13C6E03047DDC019F03DB022 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2D69B5C38694428B66FE8471 /* Pods-AuthChatDemo.debug.xcconfig */,
+				D5151ECB2E6AAD331B117627 /* Pods-AuthChatDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		59900BE2DA747C93BE0A4C46 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E0F648571F0CB53500F6CD61 /* Alamofire.framework */,
+				C2E9CAD4B170BFE25E628D13 /* Pods_AuthChatDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E055D8621F0CABF0009420FB = {
 			isa = PBXGroup;
 			children = (
 				E055D86D1F0CABF0009420FB /* AuthChatDemo */,
 				E055D86C1F0CABF0009420FB /* Products */,
+				13C6E03047DDC019F03DB022 /* Pods */,
+				59900BE2DA747C93BE0A4C46 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,6 +97,9 @@
 				E055D87A1F0CABF0009420FB /* LaunchScreen.storyboard */,
 				E055D87D1F0CABF0009420FB /* Info.plist */,
 				E055D8751F0CABF0009420FB /* AuthChatDemo.xcdatamodeld */,
+				E0F648551F0CB05900F6CD61 /* PerfectLocalAuth.swift */,
+				E0F648591F0D65A900F6CD61 /* WelcomeViewController.swift */,
+				E04152B81F0D956700A2F696 /* CoreDataStack.swift */,
 			);
 			path = AuthChatDemo;
 			sourceTree = "<group>";
@@ -74,9 +111,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E055D8801F0CABF0009420FB /* Build configuration list for PBXNativeTarget "AuthChatDemo" */;
 			buildPhases = (
+				3274F05DFAEC5A8239C3E9AC /* [CP] Check Pods Manifest.lock */,
 				E055D8671F0CABF0009420FB /* Sources */,
 				E055D8681F0CABF0009420FB /* Frameworks */,
 				E055D8691F0CABF0009420FB /* Resources */,
+				C01BDB80EF7282E74E36C550 /* [CP] Embed Pods Frameworks */,
+				276EC40CF83B0A7F02C75A06 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -133,14 +173,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		276EC40CF83B0A7F02C75A06 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AuthChatDemo/Pods-AuthChatDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3274F05DFAEC5A8239C3E9AC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C01BDB80EF7282E74E36C550 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AuthChatDemo/Pods-AuthChatDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E055D8671F0CABF0009420FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E055D8771F0CABF0009420FB /* AuthChatDemo.xcdatamodeld in Sources */,
+				E0F6485A1F0D65A900F6CD61 /* WelcomeViewController.swift in Sources */,
 				E055D8711F0CABF0009420FB /* ViewController.swift in Sources */,
+				E04152B91F0D956700A2F696 /* CoreDataStack.swift in Sources */,
 				E055D86F1F0CABF0009420FB /* AppDelegate.swift in Sources */,
+				E0F648561F0CB05900F6CD61 /* PerfectLocalAuth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +362,7 @@
 		};
 		E055D8811F0CABF0009420FB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D69B5C38694428B66FE8471 /* Pods-AuthChatDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7VH5KT8P47;
@@ -278,13 +370,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.iamjono.AuthChatDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		E055D8821F0CABF0009420FB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5151ECB2E6AAD331B117627 /* Pods-AuthChatDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7VH5KT8P47;
@@ -292,7 +385,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.iamjono.AuthChatDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -316,6 +409,7 @@
 				E055D8821F0CABF0009420FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

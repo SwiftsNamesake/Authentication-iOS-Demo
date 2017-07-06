@@ -13,11 +13,12 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
+	static var coreDataStack: CoreDataStack = { return CoreDataStack() }()
 
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
-		return true
+		return PerfectLocalAuth.startup()
 	}
 
 	func applicationWillResignActive(_ application: UIApplication) {
