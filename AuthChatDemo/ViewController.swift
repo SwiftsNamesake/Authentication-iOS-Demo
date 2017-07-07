@@ -19,13 +19,6 @@ class ViewController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
-//		print("Current session: \(PerfectLocalAuth.sessionid)")
-//		print("Current userid: \(PerfectLocalAuth.userid)")
-
-
-//		if !PerfectLocalAuth.userid.isEmpty {
-//			performSegue(withIdentifier: "welcome", sender: nil)
-//		}
 		if PerfectLocalAuth.userid.characters.count > 1 {
 			performSegue(withIdentifier: "welcome", sender: nil)
 		}
@@ -48,7 +41,6 @@ class ViewController: UIViewController {
 			} else if msg == "Login Failure" {
 				self.labelMessage.text = "Please supply a valid username and password"
 			} else {
-//				print("CALLBACK MESSAGE IS \(msg)")
 				self.labelMessage.text = msg
 			}
 		})

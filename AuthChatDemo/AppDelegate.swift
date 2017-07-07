@@ -13,12 +13,10 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-	static var coreDataStack: CoreDataStack = { return CoreDataStack() }()
-
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
-		return PerfectLocalAuth.startup()
+		return true
 	}
 
 	func applicationWillResignActive(_ application: UIApplication) {
@@ -42,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func applicationWillTerminate(_ application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 		// Saves changes in the application's managed object context before the application terminates.
+//		AppDelegate.coreDataStack.saveContext()
 		self.saveContext()
 	}
 
