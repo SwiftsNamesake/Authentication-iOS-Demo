@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import OAuthSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -42,6 +43,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Saves changes in the application's managed object context before the application terminates.
 //		AppDelegate.coreDataStack.saveContext()
 		self.saveContext()
+	}
+
+
+	// MARK: - https://github.com/OAuthSwift/OAuthSwift
+	func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+		if (url.host == "oauth-callback") {
+			OAuthSwift.handle(url: url)
+		}
+		return true
 	}
 
 	// MARK: - Core Data stack

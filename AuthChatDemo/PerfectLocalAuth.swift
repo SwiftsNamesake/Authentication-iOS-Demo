@@ -11,15 +11,29 @@ import Alamofire
 
 // TODO: Abstract the POST and GET requests
 public struct PerfectLocalAuth {
-	public static var host 		= "http://localhost:8181"
+	public static var host 		= "https://auth.perfect.org" //"http://localhost:8181"
 	public static var sessionid = ""
 	public static var csrf 		= ""
 	public static var userid 	= ""
 
 	public static var username	= ""
+	public static var name		= ""
+	public static var firstname	= ""
+	public static var lastname	= ""
 	public static var email		= ""
 	public static var usertype	= ""
 
+	public static var accountType	= "none"
+
+	public static func realname() -> String {
+		if !name.isEmpty {
+			return name
+		} else if !username.isEmpty {
+			return username
+		} else {
+			return "unknown"
+		}
+	}
 
 	public static func setHeaders() -> HTTPHeaders {
 		let headers: HTTPHeaders = [
@@ -130,8 +144,8 @@ public struct PerfectLocalAuth {
 					callback(msg)
 				}
 			} else {
-				print("Register Fail")
-				callback("Failed to communicate with Authentication Server")
+//				print("Register Fail")
+				callback("Registration error: Please make sure you have entered a valid username and email.")
 			}
 		}
 	}
@@ -158,7 +172,7 @@ public struct PerfectLocalAuth {
 					callback(error,msg)
 				}
 			} else {
-				print("Change Password Fail: \(response.result.value)")
+//				print("Change Password Fail: \(response.result.value)")
 				callback("commerror","Failed to communicate with Authentication Server")
 			}
 		}

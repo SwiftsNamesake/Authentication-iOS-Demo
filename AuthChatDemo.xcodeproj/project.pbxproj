@@ -15,7 +15,11 @@
 		E055D8771F0CABF0009420FB /* AuthChatDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E055D8751F0CABF0009420FB /* AuthChatDemo.xcdatamodeld */; };
 		E055D8791F0CABF0009420FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E055D8781F0CABF0009420FB /* Assets.xcassets */; };
 		E055D87C1F0CABF0009420FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E055D87A1F0CABF0009420FB /* LaunchScreen.storyboard */; };
+		E068A3771F290C6F000BC316 /* Services.plist in Resources */ = {isa = PBXBuildFile; fileRef = E068A3761F290C6F000BC316 /* Services.plist */; };
+		E068A3781F290C84000BC316 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E055D87D1F0CABF0009420FB /* Info.plist */; };
+		E068A37A1F290D2F000BC316 /* ReadServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = E068A3791F290D2F000BC316 /* ReadServices.swift */; };
 		E06DAFD11F0F2189005A2367 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06DAFD01F0F2189005A2367 /* ChangePasswordViewController.swift */; };
+		E0B44D961F17F452002963CE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B44D951F17F452002963CE /* RegisterViewController.swift */; };
 		E0F648561F0CB05900F6CD61 /* PerfectLocalAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F648551F0CB05900F6CD61 /* PerfectLocalAuth.swift */; };
 		E0F648581F0CB53600F6CD61 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F648571F0CB53500F6CD61 /* Alamofire.framework */; };
 		E0F6485A1F0D65A900F6CD61 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F648591F0D65A900F6CD61 /* WelcomeViewController.swift */; };
@@ -35,7 +39,10 @@
 		E055D8781F0CABF0009420FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E055D87B1F0CABF0009420FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E055D87D1F0CABF0009420FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E068A3761F290C6F000BC316 /* Services.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Services.plist; sourceTree = "<group>"; };
+		E068A3791F290D2F000BC316 /* ReadServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadServices.swift; sourceTree = "<group>"; };
 		E06DAFD01F0F2189005A2367 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		E0B44D951F17F452002963CE /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		E0F648551F0CB05900F6CD61 /* PerfectLocalAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectLocalAuth.swift; sourceTree = "<group>"; };
 		E0F648571F0CB53500F6CD61 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AuthChatDemo-brkoqrcxxmgdbvbevbrlfmdlvfbb/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		E0F648591F0D65A900F6CD61 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +101,7 @@
 		E055D86D1F0CABF0009420FB /* AuthChatDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E068A3761F290C6F000BC316 /* Services.plist */,
 				E055D86E1F0CABF0009420FB /* AppDelegate.swift */,
 				E055D8701F0CABF0009420FB /* ViewController.swift */,
 				E055D8721F0CABF0009420FB /* Main.storyboard */,
@@ -106,6 +114,8 @@
 				E05464E71F0EE3EC00BC9F87 /* SetupViewController.swift */,
 				E06DAFD01F0F2189005A2367 /* ChangePasswordViewController.swift */,
 				E0FC16341F101A98004AD886 /* ChangePasswordView.swift */,
+				E0B44D951F17F452002963CE /* RegisterViewController.swift */,
+				E068A3791F290D2F000BC316 /* ReadServices.swift */,
 			);
 			path = AuthChatDemo;
 			sourceTree = "<group>";
@@ -171,8 +181,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E068A3771F290C6F000BC316 /* Services.plist in Resources */,
 				E055D87C1F0CABF0009420FB /* LaunchScreen.storyboard in Resources */,
 				E055D8791F0CABF0009420FB /* Assets.xcassets in Resources */,
+				E068A3781F290C84000BC316 /* Info.plist in Resources */,
 				E055D8741F0CABF0009420FB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,8 +244,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B44D961F17F452002963CE /* RegisterViewController.swift in Sources */,
 				E055D8771F0CABF0009420FB /* AuthChatDemo.xcdatamodeld in Sources */,
 				E06DAFD11F0F2189005A2367 /* ChangePasswordViewController.swift in Sources */,
+				E068A37A1F290D2F000BC316 /* ReadServices.swift in Sources */,
 				E0F6485A1F0D65A900F6CD61 /* WelcomeViewController.swift in Sources */,
 				E055D8711F0CABF0009420FB /* ViewController.swift in Sources */,
 				E055D86F1F0CABF0009420FB /* AppDelegate.swift in Sources */,

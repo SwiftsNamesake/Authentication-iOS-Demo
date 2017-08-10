@@ -12,11 +12,17 @@ class WelcomeViewController: UIViewController {
 //	var chpwdview = ChangePasswordView()
 
 	@IBOutlet var chpwdview: ChangePasswordView!
+	@IBOutlet var btnChangePwd: UIButton!
 
 	override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-		labelUsername.text = PerfectLocalAuth.username
+		if PerfectLocalAuth.accountType != "local" {
+			btnChangePwd.isHidden = true
+		} else {
+			btnChangePwd.isHidden = false
+		}
+		labelUsername.text = PerfectLocalAuth.realname()
     }
 
     override func didReceiveMemoryWarning() {

@@ -6,3 +6,5 @@ target 'AuthChatDemo' do
     pod 'Alamofire', '~> 4.4'
 end
 
+pod 'OAuthSwift', '~> 1.1.0'
+pod 'SwiftyJSON'
