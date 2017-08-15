@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class WelcomeViewController: UIViewController {
 //	var chpwdview = ChangePasswordView()
 
 	@IBOutlet var chpwdview: ChangePasswordView!
 	@IBOutlet var btnChangePwd: UIButton!
+	@IBOutlet var txtPrefKey: UITextField!
+	@IBOutlet var txtPrefValue: UITextField!
+	@IBOutlet var btnPrefSave: UIButton!
+	@IBOutlet var prefText: UITextView!
 
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +28,9 @@ class WelcomeViewController: UIViewController {
 			btnChangePwd.isHidden = false
 		}
 		labelUsername.text = PerfectLocalAuth.realname()
+		PerfectLocalAuth.getMyData{
+			self.prefText.text = "\(JSON(PerfectLocalAuth.userdata))"
+		}
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,6 +42,8 @@ class WelcomeViewController: UIViewController {
 	@IBOutlet var labelUsername: UILabel!
 	@IBAction func btnLogout(_ sender: Any) {
 		PerfectLocalAuth.logout({
+			PerfectLocalAuth.sessionid 	= ""
+			PerfectLocalAuth.csrf 		= ""
 			self.performSegue(withIdentifier: "logout", sender: nil)
 		})
 	}
@@ -69,5 +79,23 @@ class WelcomeViewController: UIViewController {
 	}
 	
 
+	@IBAction func btnSavePrefsAction(_ sender: Any) {
+		guard !(txtPrefKey.text ?? "").isEmpty, !(txtPrefValue.text ?? "").isEmpty else {
+//			self.labelMessage.text = "Please supply matching passwords."
+			return
+		}
+		PerfectLocalAuth.userdata[txtPrefKey.text ?? ""] = txtPrefValue.text ?? ""
+		PerfectLocalAuth.saveMyData(PerfectLocalAuth.userdata, {
+			error, msg in
+//			print(msg)
+//			self.labelMessage.text = msg
+			self.prefText.text = "\(JSON(PerfectLocalAuth.userdata))"
+
+			self.txtPrefKey.text = ""
+			self.txtPrefValue.text = ""
+		})
+
+
+	}
 
 }

@@ -158,9 +158,14 @@ class ViewController: OAuthViewController { // UIViewController
 		let _ = oauthswift.authorize(
 			withCallbackURL: URL(string: "\(PerfectLocalAuth.host)/api/v1/oauth/return/facebook")!, scope: "public_profile", state: state,
 			success: { credential, response, parameters in
-				PerfectLocalAuth.accountType = "facebook"
-				self.getProfileFacebook(oauthswift, success: {
-					self.performSegue(withIdentifier: "welcome", sender: self)
+
+				// send upgrade user signal to Perfect OAuth2 Server
+				PerfectLocalAuth.upgradeUser("facebook", credential.oauthToken, {
+					userid in
+					PerfectLocalAuth.accountType = "facebook"
+					self.getProfileFacebook(oauthswift, success: {
+						self.performSegue(withIdentifier: "welcome", sender: self)
+					})
 				})
 
 		}, failure: { error in
@@ -182,13 +187,13 @@ class ViewController: OAuthViewController { // UIViewController
 			print("\(service) not configured")
 			return
 		}
-
+		// Note, something is weird with Linkedin OAuth2, it seems to require the secret here and it should not
 		let oauthswift = OAuth2Swift(
 			consumerKey:    parameters["consumerKey"] ?? "",
 			consumerSecret: parameters["consumerSecret"] ?? "",
-			authorizeUrl:   "https://auth.perfect.org/auth/response/linkedin",
-			accessTokenUrl: "https://auth.perfect.org/oauth/convert",
-			responseType:   "token"
+			authorizeUrl:   "https://www.linkedin.com/oauth/v2/authorization",
+			accessTokenUrl: "https://www.linkedin.com/oauth/v2/accessToken",
+			responseType:   "code"
 		)
 		//oauth-swift://oauth-callback/github
 		self.oauthswift = oauthswift
@@ -199,10 +204,14 @@ class ViewController: OAuthViewController { // UIViewController
 			withCallbackURL: URL(string: "\(PerfectLocalAuth.host)/api/v1/oauth/return/linkedin")!,
 			scope: "r_basicprofile", state:state,
 			success: { credential, response, parameters in
-				PerfectLocalAuth.accountType = "linkedin"
-				print(credential.oauthToken)
-				// Do your request
-				self.performSegue(withIdentifier: "welcome", sender: self)
+
+				// send upgrade user signal to Perfect OAuth2 Server
+				PerfectLocalAuth.upgradeUser("linkedin", credential.oauthToken, {
+					userid in
+					PerfectLocalAuth.accountType = "linkedin"
+					// Do your request
+					self.performSegue(withIdentifier: "welcome", sender: self)
+				})
 		},
 			failure: { error in
 				print(error.localizedDescription)
@@ -238,10 +247,14 @@ class ViewController: OAuthViewController { // UIViewController
 			withCallbackURL: URL(string: "\(PerfectLocalAuth.host)/api/v1/oauth/return/google")!,
 			scope: "profile", state:state,
 			success: { credential, response, parameters in
-				PerfectLocalAuth.accountType = "google"
-				print(credential.oauthToken)
-				// Do your request
-				self.performSegue(withIdentifier: "welcome", sender: self)
+
+				// send upgrade user signal to Perfect OAuth2 Server
+				PerfectLocalAuth.upgradeUser("google", credential.oauthToken, {
+					userid in
+					PerfectLocalAuth.accountType = "google"
+					// Do your request
+					self.performSegue(withIdentifier: "welcome", sender: self)
+				})
 			},
 			failure: { error in
 				print("Google OAuth2 Error: \(error.localizedDescription)")
@@ -277,7 +290,9 @@ class ViewController: OAuthViewController { // UIViewController
 			scope: "profile", state:state,
 			success: { credential, response, parameters in
 				PerfectLocalAuth.accountType = "perfect"
-				print(credential.oauthToken)
+				//PerfectLocalAuth.saveSessionIdentifiers(j["sessionid"] as? String ?? "",j["csrf"] as? String ?? "")
+				PerfectLocalAuth.saveSessionIdentifiers(credential.oauthToken,"")
+				print("Perfect OAuth Token: \(credential.oauthToken)")
 				// Do your request
 				self.getProfilePerfect(oauthswift, url: "\(PerfectLocalAuth.host)/oauth/profile", success: {
 					self.performSegue(withIdentifier: "welcome", sender: self)

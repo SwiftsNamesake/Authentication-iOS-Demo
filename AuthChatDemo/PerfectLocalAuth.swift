@@ -11,7 +11,7 @@ import Alamofire
 
 // TODO: Abstract the POST and GET requests
 public struct PerfectLocalAuth {
-	public static var host 		= "https://auth.perfect.org" //"http://localhost:8181"
+	public static var host 		= "https://auth.perfect.org" //http://localhost:8181 // https://auth.perfect.org
 	public static var sessionid = ""
 	public static var csrf 		= ""
 	public static var userid 	= ""
@@ -22,6 +22,9 @@ public struct PerfectLocalAuth {
 	public static var lastname	= ""
 	public static var email		= ""
 	public static var usertype	= ""
+
+	// User preferences
+	public static var userdata	= [String:Any]()
 
 	public static var accountType	= "none"
 
@@ -36,6 +39,7 @@ public struct PerfectLocalAuth {
 	}
 
 	public static func setHeaders() -> HTTPHeaders {
+		print("Authorization: Bearer \(sessionid)")
 		let headers: HTTPHeaders = [
 			"Authorization": "Bearer \(sessionid)",
 			"X-CSRF-Token": "\(csrf)"
@@ -60,7 +64,7 @@ public struct PerfectLocalAuth {
 		}
 	}
 
-	/// Load user data
+	/// Load user info
 	/// Requires LoacalAuth 1.1.0 or later
 	private static func getMe(){
 		if !PerfectLocalAuth.sessionid.isEmpty {
@@ -81,17 +85,52 @@ public struct PerfectLocalAuth {
 		}
 	}
 
+	/// Load User Preference Data
+	public static func getMyData(_ callback: @escaping ()->Void){
+		if !PerfectLocalAuth.sessionid.isEmpty {
+			Alamofire.request("\(PerfectLocalAuth.host)/api/v1/mydata", headers: PerfectLocalAuth.setHeaders()).responseJSON {
+				response in
+				if response.response?.statusCode != 400 {
+					if let json = response.result.value {
+						let j = json as? [String: Any] ?? [String: Any]()
+						PerfectLocalAuth.userdata 	= j["userdata"] as? [String: Any] ?? [String: Any]()
+					}
+					callback()
+				} else {
+					print("Failure to retrieve user data (likely not logged in)")
+				}
+			}
+		}
+	}
+	/// Save User Preference Data
+	public static func saveMyData(_ data: [String:Any], _ callback: @escaping (String, String)->Void) {
+
+		let parameters: Parameters = data
+
+		Alamofire.request("\(PerfectLocalAuth.host)/api/v1/mydata", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: PerfectLocalAuth.setHeaders()).responseJSON {
+			response in
+			if response.response?.statusCode != 400 {
+				if let json = response.result.value {
+					let j = json as? [String: Any] ?? [String: Any]()
+
+					let msg = j["msg"] as? String ?? ""
+					let error = j["error"] as? String ?? ""
+
+					callback(error,msg)
+				}
+			} else {
+				//				print("Change Password Fail: \(response.result.value)")
+				callback("commerror","Failed to communicate with Authentication Server")
+			}
+		}
+	}
 	public static func getSession() {
 			Alamofire.request("\(PerfectLocalAuth.host)/api/v1/session").responseJSON {
 				response in
 			if response.response?.statusCode != 400 {
 				if let json = response.result.value {
 					let j = json as? [String: Any] ?? [String: Any]()
-					PerfectLocalAuth.sessionid = j["sessionid"] as? String ?? ""
-					PerfectLocalAuth.csrf = j["csrf"] as? String ?? ""
-
-					UserDefaults.standard.set(PerfectLocalAuth.sessionid, forKey: "sessionid")
-					UserDefaults.standard.set(PerfectLocalAuth.csrf, forKey: "csrf")
+					PerfectLocalAuth.saveSessionIdentifiers(j["sessionid"] as? String ?? "",j["csrf"] as? String ?? "")
 				}
 			} else {
 				print("SESSION FAIL")
@@ -99,6 +138,13 @@ public struct PerfectLocalAuth {
 		}
 	}
 
+	public static func saveSessionIdentifiers(_ sessionid: String, _ csrf: String) {
+		PerfectLocalAuth.sessionid = sessionid
+		PerfectLocalAuth.csrf = csrf
+
+		UserDefaults.standard.set(sessionid, forKey: "sessionid")
+		UserDefaults.standard.set(csrf, forKey: "csrf")
+	}
 
 	public static func login(username: String, password: String, _ callback: @escaping (String)->Void) {
 		let parameters: Parameters = [
@@ -184,16 +230,38 @@ public struct PerfectLocalAuth {
 		PerfectLocalAuth.username 	= ""
 		PerfectLocalAuth.email 		= ""
 		PerfectLocalAuth.usertype 	= ""
+		PerfectLocalAuth.userdata 	= [String:Any]()
 
 		Alamofire.request("\(PerfectLocalAuth.host)/api/v1/logout", headers: PerfectLocalAuth.setHeaders()).responseJSON {
 			_ in
+			PerfectLocalAuth.saveSessionIdentifiers("","")
 
-			PerfectLocalAuth.sessionid 	= ""
-			PerfectLocalAuth.csrf 		= ""
-			
+			// now get new session
+			PerfectLocalAuth.getSession()
 			callback()
 		}
 
+	}
+
+	public static func upgradeUser(_ provider: String, _ token: String, _ callback: @escaping (String)->Void) {
+
+		Alamofire.request("\(PerfectLocalAuth.host)/api/v1/oauth/upgrade/\(provider)/\(token)", method: .get, headers: PerfectLocalAuth.setHeaders()).responseJSON {
+			response in
+			if response.response?.statusCode != 400 {
+				if let json = response.result.value {
+					let j = json as? [String: Any] ?? [String: Any]()
+
+					let userid = j["userid"] as? String ?? ""
+					PerfectLocalAuth.firstname = j["firstname"] as? String ?? ""
+					PerfectLocalAuth.lastname = j["lastname"] as? String ?? ""
+					PerfectLocalAuth.name = "\(PerfectLocalAuth.firstname) \(PerfectLocalAuth.lastname)"
+
+					callback(userid)
+				}
+			} else {
+				callback("Failed to communicate with Authentication Server")
+			}
+		}
 	}
 
 }
