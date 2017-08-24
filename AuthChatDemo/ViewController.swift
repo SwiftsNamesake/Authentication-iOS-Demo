@@ -289,13 +289,18 @@ class ViewController: OAuthViewController { // UIViewController
 			withCallbackURL: URL(string: "\(PerfectLocalAuth.host)/api/v1/oauth/return/perfect")!,
 			scope: "profile", state:state,
 			success: { credential, response, parameters in
-				PerfectLocalAuth.accountType = "perfect"
-				//PerfectLocalAuth.saveSessionIdentifiers(j["sessionid"] as? String ?? "",j["csrf"] as? String ?? "")
-				PerfectLocalAuth.saveSessionIdentifiers(credential.oauthToken,"")
-				print("Perfect OAuth Token: \(credential.oauthToken)")
-				// Do your request
-				self.getProfilePerfect(oauthswift, url: "\(PerfectLocalAuth.host)/oauth/profile", success: {
+				// send upgrade user signal to Perfect OAuth2 Server
+				print(credential.oauthToken)
+				PerfectLocalAuth.upgradeUser("local", credential.oauthToken, {
+					userid in
+
+					PerfectLocalAuth.accountType = "perfect"
+					//PerfectLocalAuth.saveSessionIdentifiers(credential.oauthToken,"")
+					print("Perfect OAuth Token: \(credential.oauthToken)")
+					// Do your request
 					self.performSegue(withIdentifier: "welcome", sender: self)
+//					self.getProfilePerfect(oauthswift, url: "\(PerfectLocalAuth.host)/oauth/profile", success: {
+//					})
 				})
 		},
 			failure: { error in
